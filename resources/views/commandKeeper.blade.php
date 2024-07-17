@@ -22,7 +22,7 @@
                 </div>
                 <div>
                     <label for="command">COmmand:</label>
-                    <input type="textarea" id="command" name="command">
+                    <textarea id="command" name="command" rows="4" cols="50"> </textarea>
                 </div>
                 <div>
                     <button type="submit">Submit</button>
