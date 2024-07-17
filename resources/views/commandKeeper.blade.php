@@ -25,7 +25,7 @@
                     <textarea id="command" name="command" rows="4" cols="50"> </textarea>
                 </div>
                 <div>
-                    <button type="submit">Submit</button>
+                    <button type="submit">Submitd</button>
                 </div>
             </form>
     </body>
