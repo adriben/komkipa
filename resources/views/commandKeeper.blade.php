@@ -15,20 +15,6 @@
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
         <div id="app">
-            <form action="{{ route('commandKeeper') }}" method="POST">
-                @csrf
-                <div>
-                    <label for="title">Title:</label>
-                    <input type="text" id="title" name="title">
-                </div>
-                <div>
-                    <label for="command">COmmand:</label>
-                    <textarea id="command" name="command" rows="4" cols="50"> </textarea>
-                </div>
-                <div>
-                    <button type="submit">Submit</button>
-                </div>
-            </form>
             <example-component></example-component>
         </div>
     </body>
