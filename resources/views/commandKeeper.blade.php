@@ -15,6 +15,7 @@
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
         <div id="app">
+            <header-component></header-component>
             <command-form-component></command-form-component>
         </div>
     </body>

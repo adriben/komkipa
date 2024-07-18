@@ -10,7 +10,11 @@ import autoResize from './directives/autoResize';
 const app = createApp({});
 
 import commandFormComponent from './components/commandFormComponent.vue';
+import headerComponent from './components/headerComponent.vue';
+
 app.component('command-form-component', commandFormComponent);
+app.component('header-component', headerComponent);
+
 app.directive('auto-resize', autoResize);
 
 
