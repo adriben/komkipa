@@ -11,9 +11,10 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
         <!-- Styles -->
-
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
+        <div id="app">
             <form action="{{ route('commandKeeper') }}" method="POST">
                 @csrf
                 <div>
@@ -25,8 +26,10 @@
                     <textarea id="command" name="command" rows="4" cols="50"> </textarea>
                 </div>
                 <div>
-                    <button type="submit">Submitd</button>
+                    <button type="submit">Submit</button>
                 </div>
             </form>
+            <example-component></example-component>
+        </div>
     </body>
 </html>
