@@ -1,16 +1,19 @@
-// resources/js/autoResize.js
 export default {
     beforeMount(el) {
-      el.style.overflow = 'hidden';
-      el.style.resize = 'none';
-      el.addEventListener('input', autoResize);
-
-      function autoResize() {
+      // Ensure the initial height is calculated correctly
+      requestAnimationFrame(() => {
         el.style.height = 'auto';
-        el.style.height = el.scrollHeight + 'px';
-      }
+        el.style.height = `${el.scrollHeight + 2}px`; // Add a small buffer to avoid initial small height
+      });
+
+      el.addEventListener('input', () => {
+        el.style.height = 'auto';
+        el.style.height = `${el.scrollHeight + 2}px`; // Adjust height dynamically
+      });
     },
-    unmounted(el) {
-      el.removeEventListener('input', autoResize);
-    }
+    updated(el) {
+      // Ensure the height is recalculated after updates
+      el.style.height = 'auto';
+      el.style.height = `${el.scrollHeight + 2}px`; // Add a small buffer
+    },
   };

@@ -1,6 +1,10 @@
 <template>
     <div class="container mx-auto p-4">
-      <div v-if="message" :class="messageType === 'success' ? 'bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative' : 'bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative'" role="alert">
+      <div
+        v-if="message"
+        :class="messageType === 'success' ? 'bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative' : 'bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative'"
+        role="alert"
+      >
         <strong class="font-bold">{{ messageType === 'success' ? 'Success' : 'Error' }}!</strong>
         <span class="block sm:inline">{{ message }}</span>
       </div>
@@ -38,50 +42,63 @@
       </form>
     </div>
   </template>
-<script>
-import axios from "axios";
 
-export default {
+  <script>
+  import axios from "axios";
+
+  export default {
+    name: "CommandFormComponent",
+    props: {
+      title: String,
+      command: String,
+    },
     data() {
-        return {
-            formData: {
-                title: "",
-                command: "",
-            },
-            message: "",
-            messageType: "",
-        };
+      return {
+        formData: {
+          title: this.title || "",
+          command: this.command || "",
+        },
+        message: "",
+        messageType: "",
+      };
+    },
+    watch: {
+      title(newTitle) {
+        this.formData.title = newTitle;
+      },
+      command(newCommand) {
+        this.formData.command = newCommand;
+      },
     },
     methods: {
-        async submitForm() {
-            try {
-                const response = await axios.post(
-                    this.route("commandKeeper"),
-                    this.formData
-                );
-                this.message = " Form submitted successfully!";
-                this.messageType = "success";
-                this.resetForm();
-            } catch (error) {
-                this.message = " Failed to submit the form.";
-                this.messageType = "error";
-            }
-        },
-        route(name) {
-            const routes = {
-                commandKeeper: "/commandKeeper",
-            };
-            return routes[name];
-        },
-        resetForm() {
-            console.log("je suis la ");
-            this.formData.title = "";
-            this.formData.command = "";
-        },
+      async submitForm() {
+        try {
+          const response = await axios.post(
+            this.route("commandKeeper"),
+            this.formData
+          );
+          this.message = "Form submitted successfully!";
+          this.messageType = "success";
+          this.resetForm();
+        } catch (error) {
+          this.message = "Failed to submit the form.";
+          this.messageType = "error";
+        }
+      },
+      route(name) {
+        const routes = {
+          commandKeeper: "/commandKeeper",
+        };
+        return routes[name];
+      },
+      resetForm() {
+        this.formData.title = "";
+        this.formData.command = "";
+      },
     },
-};
-</script>
+  };
+  </script>
 
-<style scoped>
-/* Add any additional custom styles here if needed */
-</style>
+  <style scoped>
+  /* Add any additional custom styles here if needed */
+  </style>

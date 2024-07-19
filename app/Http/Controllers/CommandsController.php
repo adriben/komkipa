@@ -10,7 +10,10 @@ class CommandsController extends Controller
 {
     public function index()
     {
-        return Inertia::render('CommandKeeper');
+        $commands = Commands::all();
+        return Inertia::render('CommandKeeper', [
+            'commands' => $commands
+        ]);
     }
 
     public function create(Request $request){

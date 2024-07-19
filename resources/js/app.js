@@ -1,14 +1,19 @@
 import './bootstrap';
 import '../css/app.css';
-import autoResize from './directives/autoResize';
+import '@fortawesome/fontawesome-free/css/all.css';
+
+import autoResize from './Directives/autoResize';
 
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 
-import commandFormComponent from './components/commandFormComponent.vue';
-import headerComponent from './components/headerComponent.vue';
+import commandFormComponent from './Components/CommandFormComponent.vue';
+import headerComponent from './Components/HeaderComponent.vue';
+import searchbarComponent from './Components/SearchbarComponent.vue';
+import resultsComponent from './Components/ResultsComponent.vue';
+
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 // Create Inertia app
 createInertiaApp({
@@ -23,6 +28,8 @@ createInertiaApp({
         // Register your custom components
         vueApp.component('command-form-component', commandFormComponent);
         vueApp.component('header-component', headerComponent);
+        vueApp.component('searchbar-component', searchbarComponent);
+        vueApp.component('results-component', resultsComponent);
 
         // Register any custom directives
         vueApp.directive('auto-resize', autoResize);
@@ -34,7 +41,4 @@ createInertiaApp({
         color: '#4B5563',
     },
 });
-const bladeApp = createApp({});
-bladeApp.component('command-form-component', commandFormComponent);
-bladeApp.component('header-component', headerComponent);
-bladeApp.mount('#app');
+

@@ -36,8 +36,8 @@
 
   <script>
   export default {
-    // Add any logic or data properties as needed
-  };
+  name: 'HeaderComponent',
+};
   </script>
 
   <style scoped>
