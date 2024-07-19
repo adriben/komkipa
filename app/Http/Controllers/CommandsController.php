@@ -10,7 +10,7 @@ class CommandsController extends Controller
 {
     public function index()
     {
-        $commands = Commands::all();
+        $commands = Commands::orderBy('created_at', 'desc')->get();
         return Inertia::render('CommandKeeper', [
             'commands' => $commands
         ]);
