@@ -2,12 +2,13 @@
     <div>
       <header-component class="header"></header-component>
       <command-form-component :title="selectedCommand.title" :command="selectedCommand.command"></command-form-component>
-      <search-bar @search="handleSearch"></search-bar>
+      <searchbar-component @search="handleSearch"></searchbar-component>
       <results-component :commands="commands" @select-command="handleSelectCommand"></results-component>
     </div>
   </template>
 
   <script>
+
   export default {
     props: {
       commands: Array,
@@ -18,12 +19,31 @@
           title: '',
           command: '',
         },
+        query : "",
+        formData: {
+        query: this.query || "",
+        },
       };
     },
     methods: {
-      handleSearch(query) {
-        // Handle the search logic here, e.g., filtering commands
-        console.log('Search query:', query);
+      async handleSearch(query) {
+        this.query = query
+        try {
+            console.log(this.route("commandKeeperSearch"));
+          await axios.post(
+            this.route("commandKeeperSearch"),
+            this.formData
+          );
+        } catch (error) {
+
+          console.log(error)
+        }
+      },
+      route(name) {
+        const routes = {
+          commandKeeperSearch: "/commandKeeper/search",
+        };
+        return routes[name];
       },
       handleSelectCommand(command) {
         this.selectedCommand = { ...command };

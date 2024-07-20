@@ -5,7 +5,6 @@
         class="w-full px-4 py-2 text-gray-900 bg-white border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
         placeholder="Search..."
         v-model="query"
-        @input="handleInput"
       />
       <button
         class="absolute top-0 right-0 px-4 py-2 text-white bg-green-500 rounded-full shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -24,18 +23,9 @@
       };
     },
     methods: {
-      handleInput() {
-        // Optional: Emit the input event to parent components
-        this.$emit('input', this.query);
-      },
       search() {
-        // Handle the search logic here
         this.$emit('search', this.query);
       },
     },
   };
   </script>
-
-  <style scoped>
-  /* Add any additional styling here */
-  </style>

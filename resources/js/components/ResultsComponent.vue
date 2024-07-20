@@ -28,7 +28,6 @@
     },
     methods: {
       selectCommand(command) {
-        console.log(command);
         this.$emit('select-command', command);
       },
     },

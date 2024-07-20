@@ -25,7 +25,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::get('/commandKeeper', [CommandsController::class, 'index'])->name('commandKeeper.view');
-Route::post('/commandKeeper', [CommandsController::class, 'create'])->name('commandKeeper');
+Route::post('/commandKeeper', [CommandsController::class, 'create'])->name('commandKeeper.create');
+Route::post('/commandKeeper/search', [CommandsController::class, 'search'])->name('commandKeeper.search');
 
 
 

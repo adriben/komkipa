@@ -16,7 +16,21 @@ class CommandsController extends Controller
         ]);
     }
 
-    public function create(Request $request){
+    public function search(Request $request)
+    {
+        dd("prout");
+        $query = $request->input('query', '');
+
+        $commands = Command::where('title', 'like', "%{$query}%")
+            ->orWhere('command', 'like', "%{$query}%")
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return response()->json($commands);
+    }
+
+    public function create(Request $request)
+    {
 
         $title = $request->title;
         $command = $request->command;
