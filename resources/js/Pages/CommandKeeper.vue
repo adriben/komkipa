@@ -3,11 +3,12 @@
       <header-component class="header"></header-component>
       <command-form-component :title="selectedCommand.title" :command="selectedCommand.command"></command-form-component>
       <searchbar-component @search="handleSearch"></searchbar-component>
-      <results-component :commands="commands" @select-command="handleSelectCommand"></results-component>
+      <results-component :commands="localCommands" @select-command="handleSelectCommand"></results-component>
     </div>
   </template>
 
   <script>
+  import axios from 'axios';
 
   export default {
     props: {
@@ -16,28 +17,38 @@
     data() {
       return {
         selectedCommand: {
-          title: '',
-          command: '',
+          title: "",
+          command: "",
         },
-        query : "",
+        query: "",
         formData: {
-        query: this.query || "",
+          query: "",
         },
+        localCommands: this.commands, // Create a local copy of commands
       };
+    },
+    watch: {
+      commands(newCommands) {
+        this.localCommands = newCommands;
+      }
     },
     methods: {
       async handleSearch(query) {
-        this.query = query
-        try {
-          console.log(this.route("commandKeeperSearch"));
-          await axios.post(
-            this.route("commandKeeperSearch"),
-            this.formData
-          );
-        } catch (error) {
+        this.query = query;
+        this.formData.query = query;
+        console.log(this.formData);
 
-          console.log(error)
-        }
+        await axios.post(this.route("commandKeeperSearch"), this.formData)
+          .then((response) => {
+            if (Array.isArray(response.data)) {
+              this.localCommands = response.data;
+            } else {
+              console.error('Unexpected response data format:', response.data);
+            }
+          })
+          .catch((error) => {
+            console.log(error.response);
+          });
       },
       route(name) {
         const routes = {
@@ -51,8 +62,8 @@
       },
       scrollToTop() {
         const headerHeight = document.querySelector('header').offsetHeight;
-      window.scrollTo({ top: headerHeight, behavior: 'smooth' });
-    },
+        window.scrollTo({ top: headerHeight, behavior: 'smooth' });
+      },
     },
   };
   </script>

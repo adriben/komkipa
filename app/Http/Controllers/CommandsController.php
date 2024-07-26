@@ -5,6 +5,7 @@ use Inertia\Inertia;
 
 use App\Models\Commands;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CommandsController extends Controller
 {
@@ -18,15 +19,15 @@ class CommandsController extends Controller
 
     public function search(Request $request)
     {
-        dd("prout");
         $query = $request->input('query', '');
 
-        $commands = Command::where('title', 'like', "%{$query}%")
-            ->orWhere('command', 'like', "%{$query}%")
-            ->orderBy('created_at', 'desc')
-            ->get();
+          $commands = Commands::where('title', 'like', "%{$query}%")
+                ->orWhere('command', 'like', "%{$query}%")
+                ->orderBy('created_at', 'desc')
+                ->get();
 
-        return response()->json($commands);
+            return response()->json($commands);
+
     }
 
     public function create(Request $request)
@@ -35,8 +36,8 @@ class CommandsController extends Controller
         $title = $request->title;
         $command = $request->command;
         Commands::create([
-            'title' => $request->title,
-            'command' => $request->command
+            'title' => $title,
+            'command' => $command
         ]);
 
         return Inertia::render('CommandKeeper');
