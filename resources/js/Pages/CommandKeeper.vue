@@ -29,7 +29,7 @@
       async handleSearch(query) {
         this.query = query
         try {
-            console.log(this.route("commandKeeperSearch"));
+          console.log(this.route("commandKeeperSearch"));
           await axios.post(
             this.route("commandKeeperSearch"),
             this.formData
