@@ -1,9 +1,10 @@
 <template>
     <div>
-      <header-component class="header"></header-component>
+     <authenticate-layout>
       <command-form-component :title="selectedCommand.title" :command="selectedCommand.command"></command-form-component>
       <searchbar-component @search="handleSearch"></searchbar-component>
       <results-component :commands="localCommands" @select-command="handleSelectCommand"></results-component>
+    </authenticate-layout>
     </div>
   </template>
 

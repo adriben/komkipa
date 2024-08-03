@@ -23,10 +23,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/commandKeeper', [CommandsController::class, 'index'])->name('commandKeeper.view');
+    Route::post('/commandKeeper', [CommandsController::class, 'create'])->name('commandKeeper.create');
+    Route::post('/commandKeeper/search', [CommandsController::class, 'search'])->name('commandKeeper.search');
 });
-Route::get('/commandKeeper', [CommandsController::class, 'index'])->name('commandKeeper.view');
-Route::post('/commandKeeper', [CommandsController::class, 'create'])->name('commandKeeper.create');
-Route::post('/commandKeeper/search', [CommandsController::class, 'search'])->name('commandKeeper.search');
+
 
 
 

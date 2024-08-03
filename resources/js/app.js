@@ -13,6 +13,7 @@ import commandFormComponent from './Components/CommandFormComponent.vue';
 import headerComponent from './Components/HeaderComponent.vue';
 import searchbarComponent from './Components/SearchbarComponent.vue';
 import resultsComponent from './Components/ResultsComponent.vue';
+import authenticatedLayout from './Layouts/AuthenticatedLayout.vue';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 // Create Inertia app
@@ -30,6 +31,7 @@ createInertiaApp({
         vueApp.component('header-component', headerComponent);
         vueApp.component('searchbar-component', searchbarComponent);
         vueApp.component('results-component', resultsComponent);
+        vueApp.component('authenticate-layout', authenticatedLayout);
 
         // Register any custom directives
         vueApp.directive('auto-resize', autoResize);

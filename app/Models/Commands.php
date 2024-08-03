@@ -17,6 +17,7 @@ class Commands extends Model
     protected $fillable = [
         'title',
         'command',
+        'user_id',
     ];
 
 }
