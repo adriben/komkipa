@@ -75,11 +75,11 @@
             this.route("commandKeeper"),
             this.formData
           );
-          this.message = "Form submitted successfully!";
+          this.message = " Command successfully created!";
           this.messageType = "success";
           this.resetForm();
         } catch (error) {
-          this.message = "Failed to submit the form.";
+          this.message = " Failed to submit the command, please try again.";
           this.messageType = "error";
         }
       },
