@@ -1,6 +1,6 @@
 <template>
     <div>
-     <authenticate-layout>
+     <authenticate-layout class="header">
       <command-form-component :title="selectedCommand.title" :command="selectedCommand.command"></command-form-component>
       <searchbar-component @search="handleSearch"></searchbar-component>
       <results-component :commands="localCommands" @select-command="handleSelectCommand"></results-component>
@@ -62,7 +62,7 @@
         this.scrollToTop();
       },
       scrollToTop() {
-        const headerHeight = document.querySelector('header').offsetHeight;
+        const headerHeight = document.querySelector('.border-b').offsetHeight;
         window.scrollTo({ top: headerHeight, behavior: 'smooth' });
       },
     },
